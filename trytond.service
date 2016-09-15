@@ -1,0 +1,16 @@
+[Unit]
+Description=Tryton Application Platform Server
+After=remote-fs.target
+After=network.target
+After=postgresql.service
+After=mysql.service
+ConditionPathExists=/home/alko/Development/trytondata/trytond.conf
+
+[Service]
+User=alko
+Group=alko
+ExecStart=/home/alko/Development/trytond/bin/trytond --config /home/alko/Development/trytondata/trytond.conf --logconf /home/alko/Development/trytondata/trytond_log.conf
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
